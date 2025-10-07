@@ -35,7 +35,7 @@ export abstract class FluxStore {
     /**
      * 訂閱關注的action
      */
-    protected abstract subscribe(action): void;
+    protected abstract subscribe(action: FluxAction): void;
 
     /**
      * view監聽store變化
