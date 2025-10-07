@@ -2,6 +2,7 @@ import { _decorator, Component, director, game, Node } from 'cc';
 import { Mud } from './app-modules';
 import { FluxModule } from '../flux/flux-module';
 import { EventModule } from '../event/event-module';
+import { SingleModule } from '../singleton/single-module';
 
 const { ccclass, property } = _decorator;
 
@@ -32,12 +33,19 @@ export class AppLauncher extends Component {
 
         // flux
         Mud.flux = new FluxModule();
+
+        // 單例
+        Mud.single = new SingleModule();
     }
 
     /**
      * 
      */
     protected onDestroy(): void {
+        // 單例
+        Mud.single = new SingleModule();
+        Mud.single = null;
+
         // flux
         Mud.flux?.shutdown();
         Mud.flux = null;
