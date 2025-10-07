@@ -1,6 +1,7 @@
 import { _decorator, Component, director, game, Node } from 'cc';
 import { Mud } from './app-modules';
 import { FluxModule } from '../flux/flux-module';
+import { EventModule } from '../event/event-module';
 
 const { ccclass, property } = _decorator;
 
@@ -26,6 +27,9 @@ export class AppLauncher extends Component {
         this._persist = new Node("AppPersistNode");
         director.addPersistRootNode(this._persist);
 
+        // 事件
+        Mud.event = new EventModule();
+
         // flux
         Mud.flux = new FluxModule();
     }
@@ -37,6 +41,10 @@ export class AppLauncher extends Component {
         // flux
         Mud.flux?.shutdown();
         Mud.flux = null;
+
+        // 事件
+        Mud.event?.shutdown();
+        Mud.event = null;
 
         // 常駐節點
         director.removePersistRootNode(this._persist);
