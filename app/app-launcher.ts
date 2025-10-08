@@ -1,4 +1,4 @@
-import { _decorator, Component, director, game, Node } from 'cc';
+import { _decorator, AudioSource, Component, director, game, Node } from 'cc';
 import { AppModules } from './app-modules';
 
 const { ccclass, property } = _decorator;
@@ -33,7 +33,8 @@ export class AppLauncher extends Component {
      * 初始化各模組
      */
     private initModules(): void {
-        // TODO
+        let audioSource = this._persist.addComponent(AudioSource);
+        AppModules.bgm.init(audioSource);
     }
 
     /**
@@ -55,6 +56,7 @@ export class AppLauncher extends Component {
         AppModules.single.shutdown();
         AppModules.flux.shutdown();
         AppModules.event.shutdown();
+        AppModules.bgm.shutdown();
         AppModules.asset.shutdown();
     }
 }
