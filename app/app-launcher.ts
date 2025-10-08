@@ -58,6 +58,7 @@ export class AppLauncher extends Component {
      */
     private shutdownModules(): void {
         AppModules.single.shutdown();
+        AppModules.net.shutdown();
         AppModules.flux.shutdown();
         AppModules.event.shutdown();
         AppModules.sfx.shutdown();
