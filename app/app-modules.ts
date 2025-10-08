@@ -3,6 +3,7 @@ import { BgmModule } from "../audio/bgm-module";
 import { SfxModule } from "../audio/sfx-module";
 import { EventModule } from "../event/event-module";
 import { FluxModule } from "../flux/flux-module";
+import { NetModule } from "../network/net-module";
 import { SingleModule } from "../singleton/single-module";
 
 /**
@@ -33,6 +34,11 @@ export class AppModules {
      * flux模塊
      */
     static readonly flux: FluxModule = new FluxModule();
+
+    /**
+     * 網路模塊
+     */
+    static readonly net: NetModule = new NetModule();
 
     /**
      * 單例模塊
