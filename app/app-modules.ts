@@ -1,4 +1,6 @@
 import { AssetModule } from "../asset/asset-module";
+import { BgmModule } from "../audio/bgm-module";
+import { SfxModule } from "../audio/sfx-module";
 import { EventModule } from "../event/event-module";
 import { FluxModule } from "../flux/flux-module";
 import { SingleModule } from "../singleton/single-module";
@@ -11,6 +13,16 @@ export class AppModules {
      * 資源模塊
      */
     static readonly asset: AssetModule = new AssetModule();
+
+    /**
+     * 背景音樂
+     */
+    static readonly bgm: BgmModule = new BgmModule();
+
+    /**
+     * 音效模擴
+     */
+    static readonly sfx: SfxModule = new SfxModule();
 
     /**
      * 事件模塊
