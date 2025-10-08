@@ -5,6 +5,11 @@ import { FsmCtrl } from "./fsm-ctrl";
  */
 export abstract class FsmState<T> {
     /**
+     * 名稱
+     */
+    get name(): string { return this.constructor.name; }
+
+    /**
      * 狀態機控制
      */
     protected declare _ctrl: FsmCtrl<T>;
