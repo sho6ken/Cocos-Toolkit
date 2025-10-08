@@ -1,7 +1,7 @@
 import { _decorator, Component, director, game, Node } from 'cc';
-import { Mud } from './app-modules';
-import { FluxModule } from '../flux/flux-module';
+import { AppModules } from './app-modules';
 import { EventModule } from '../event/event-module';
+import { FluxModule } from '../flux/flux-module';
 import { SingleModule } from '../singleton/single-module';
 
 const { ccclass, property } = _decorator;
@@ -28,34 +28,42 @@ export class AppLauncher extends Component {
         this._persist = new Node("AppPersistNode");
         director.addPersistRootNode(this._persist);
 
-        // 事件
-        Mud.event = new EventModule();
+        // 模塊初始化
+        this.initModules();
+    }
 
-        // flux
-        Mud.flux = new FluxModule();
-
-        // 單例
-        Mud.single = new SingleModule();
+    /**
+     * 初始化各模組
+     */
+    private initModules(): void {
+        AppModules.event = new EventModule();
+        AppModules.flux = new FluxModule();
+        AppModules.single = new SingleModule();
     }
 
     /**
      * 
      */
     protected onDestroy(): void {
-        // 單例
-        Mud.single = new SingleModule();
-        Mud.single = null;
-
-        // flux
-        Mud.flux?.shutdown();
-        Mud.flux = null;
-
-        // 事件
-        Mud.event?.shutdown();
-        Mud.event = null;
+        // 關閉模塊
+        this.shutdownModules();
 
         // 常駐節點
         director.removePersistRootNode(this._persist);
         this._persist.destroy();
+    }
+
+    /**
+     * 關閉各模塊
+     */
+    private shutdownModules(): void {
+        AppModules.single = new SingleModule();
+        AppModules.single = null;
+
+        AppModules.flux.shutdown();
+        AppModules.flux = null;
+
+        AppModules.event.shutdown();
+        AppModules.event = null;
     }
 }

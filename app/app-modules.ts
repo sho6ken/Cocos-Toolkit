@@ -5,7 +5,7 @@ import { SingleModule } from "../singleton/single-module";
 /**
  * app模塊
  */
-export class Mud {
+export class AppModules {
     /**
      * 事件模塊
      */
