@@ -3,6 +3,7 @@ import { AppModules } from './app-modules';
 import { EventModule } from '../event/event-module';
 import { FluxModule } from '../flux/flux-module';
 import { SingleModule } from '../singleton/single-module';
+import { AssetModule } from '../asset/asset-module';
 
 const { ccclass, property } = _decorator;
 
@@ -36,6 +37,7 @@ export class AppLauncher extends Component {
      * 初始化各模組
      */
     private initModules(): void {
+        AppModules.asset = new AssetModule();
         AppModules.event = new EventModule();
         AppModules.flux = new FluxModule();
         AppModules.single = new SingleModule();
@@ -65,5 +67,8 @@ export class AppLauncher extends Component {
 
         AppModules.event.shutdown();
         AppModules.event = null;
+
+        AppModules.asset.shutdown();
+        AppModules.asset = null;
     }
 }
