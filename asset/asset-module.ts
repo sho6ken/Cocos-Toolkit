@@ -16,29 +16,33 @@ export class AssetModule {
     /**
      * 資源加載器
      */
-    private _a = new AssetLoader();
+    private declare _a: AssetLoader;
 
     /**
      * bundle加載器
      */
-    private _b = new BundleLoader();
+    private declare _b: BundleLoader;
 
     /**
      * 資料夾加載器
      */
-    private _f = new FolderLoader();
+    private declare _f: FolderLoader;
+
+    /**
+     * 
+     */
+    constructor() {
+        this._a = new AssetLoader();
+        this._b = new BundleLoader();
+        this._f = new FolderLoader();
+    }
 
     /**
      * 關閉系統
      */
     shutdown(): void {
         this._a.shutdown();
-        this._a = null;
-
         this._b.shutdown();
-        this._b = null;
-
-        this._f = null;
     }
 
     /**

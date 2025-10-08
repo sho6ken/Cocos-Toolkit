@@ -10,20 +10,20 @@ export class AppModules {
     /**
      * 資源模塊
      */
-    static asset: AssetModule = null;
+    static readonly asset: AssetModule = new AssetModule();
 
     /**
      * 事件模塊
      */
-    static event: EventModule = null;
+    static readonly event: EventModule = new EventModule();
 
     /**
      * flux模塊
      */
-    static flux: FluxModule = null;
+    static readonly flux: FluxModule = new FluxModule();
 
     /**
      * 單例模塊
      */
-    static single: SingleModule = null;
+    static readonly single: SingleModule = new SingleModule();
 }

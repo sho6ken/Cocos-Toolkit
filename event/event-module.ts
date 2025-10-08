@@ -33,7 +33,7 @@ export class EventModule {
         this._events.forEach((list, type) => {
             list.forEach(cb => this.off(type, cb), this);
         }, this);
-        this._events = null;
+        this._events.clear();
     }
 
     /**
