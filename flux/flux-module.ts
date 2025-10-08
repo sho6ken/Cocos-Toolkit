@@ -46,7 +46,10 @@ export class FluxModule {
     shutdown(): void {
         this._dispatcher.shutdown();
 
-        this._stores.forEach(store => store.shutdown());
+        this._stores.forEach(store => {
+            store.shutdown();
+            store = null;
+        });
         this._stores.clear();
     }
 

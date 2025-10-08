@@ -71,6 +71,7 @@ export class SfxModule {
      */
     shutdown(): void {
         this._pool.shutdown();
+        this._pool = null;
 
         this._host.removeFromParent();
         this._host.destroy();

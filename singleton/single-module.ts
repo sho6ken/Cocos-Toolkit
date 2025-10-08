@@ -75,6 +75,8 @@ export class SingleModule {
         }
 
         inst.shutdown && inst.shutdown();
+        inst = null;
+        
         this._container.delete(name);
     }
 }
