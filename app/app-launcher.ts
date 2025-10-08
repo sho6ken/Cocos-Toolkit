@@ -33,8 +33,12 @@ export class AppLauncher extends Component {
      * 初始化各模組
      */
     private initModules(): void {
+        // 音樂
         let audioSource = this._persist.addComponent(AudioSource);
         AppModules.bgm.init(audioSource);
+
+        // 音效
+        AppModules.sfx.init(this._persist);
     }
 
     /**
@@ -56,6 +60,7 @@ export class AppLauncher extends Component {
         AppModules.single.shutdown();
         AppModules.flux.shutdown();
         AppModules.event.shutdown();
+        AppModules.sfx.shutdown();
         AppModules.bgm.shutdown();
         AppModules.asset.shutdown();
     }
