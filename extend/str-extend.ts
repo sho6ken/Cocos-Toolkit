@@ -39,7 +39,7 @@ String.prototype.format = function(this: string, ...params: (string | number)[])
  * 
  */
 String.prototype.replaceAll = function(this: string, target: string, replace: string): string {
-    return this.replace(new RegExp(target, `gm`), replace);
+    return this.replace(new RegExp(target, "gm"), replace);
 }
 
 /**
@@ -49,7 +49,7 @@ String.prototype.padEnd = function(this: string, count: number, str: string): st
     // floor if number or convert non-number to 0
     count = count >> 0;
 
-    str = String((typeof str !== 'undefined' ? str : ' '));
+    str = String((typeof str !== "undefined" ? str : " "));
 
     if (this.length > count) {
         return String(this);

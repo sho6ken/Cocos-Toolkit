@@ -67,10 +67,10 @@ Number.prototype.between = function(this: number, min: number, max: number): boo
  * 
  */
 Number.prototype.monetary = function(this: number, decimals: number): string {
-    var slices = String(this.valueOf()).split('.');
-    slices[0] = slices[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, '$1,');
-    slices[1] = (slices[1] || '').padEnd(decimals, '0');
-    return `$${slices.join('.')}`;
+    var slices = String(this.valueOf()).split(".");
+    slices[0] = slices[0].replace(/(\d{1,3})(?=(\d{3})+$)/g, "$1,");
+    slices[1] = (slices[1] || "").padEnd(decimals, "0");
+    return `$${slices.join(".")}`;
 }
 
 /**
@@ -92,7 +92,7 @@ Number.prototype.thousand = function(this: number): string {
         return value.toString();
     }
 
-    const symbols = [``, `K`, `M`, `G`];
+    const symbols = ["", "K", "M", "G"];
     
     let idx = Math.floor(Math.log(value) / Math.log(k));
     let num = value / Math.pow(k, idx);
