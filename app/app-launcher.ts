@@ -24,7 +24,7 @@ export class AppLauncher extends Component {
         //DynamicAtlasManager.instance.enabled = true;  // 不知為何, 開啟動態圖集會使apk圖片無法正常顯示
 
         // 常駐節點
-        this._persist = new Node("AppPersistNode");
+        this._persist = new Node("Persist");
         director.addPersistRootNode(this._persist);
 
         // 模塊初始化
