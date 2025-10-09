@@ -1,6 +1,7 @@
 import { _decorator, AudioSource, Component, director, game, Node } from 'cc';
 import { AppModules } from './app-modules';
 import { FocusBlur } from '../component/focus-blur';
+import { CanvasAdapt } from '../component/adapt/canvas-adapt';
 
 const { ccclass, property } = _decorator;
 
@@ -34,6 +35,8 @@ export class AppLauncher extends Component {
      * 
      */
     protected start(): void {
+        // 添加組件
+        this._persist.addComponent(CanvasAdapt);
         this._persist.addComponent(FocusBlur);
         
         // 聚焦

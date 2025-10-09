@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, screen, UITransform, view } from 'cc';
+import { AppModules } from '../../app/app-modules';
 
 const { ccclass, property, requireComponent, menu } = _decorator;
 
@@ -17,21 +18,14 @@ export class DesktopAdapt extends Component {
 	 */
 	protected onLoad(): void {
 		this.adjust();
-
-        screen.on("window-resize", this.adjust, this);
-        screen.on("fullscreen-change", this.adjust, this);
-		screen.on("orientation-change", this.adjust, this);
-		view.on("canvas-resize", this.adjust, this);
+        AppModules.event.on("VIEW_ADJUST", this.adjust.bind(this));
 	}
 
 	/**
 	 * 
 	 */
 	protected onDestroy(): void {
-        screen.off("window-resize", this.adjust, this);
-        screen.off("fullscreen-change", this.adjust, this);
-		screen.off("orientation-change", this.adjust, this);
-		view.off("canvas-resize", this.adjust, this);
+        AppModules.event.off("VIEW_ADJUST", this.adjust.bind(this));
 	}
 
 	/**
