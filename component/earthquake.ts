@@ -36,7 +36,7 @@ export class Earthquake extends Component {
      * 震動
      * @param count 震動次數
      */
-    public async shake(count: number = 5): Promise<void> {
+    async shake(count: number = 5): Promise<void> {
         if (count <= 1 || this.power <= 0 || this.sec <= 0) {
             return;
         }
