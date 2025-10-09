@@ -27,6 +27,11 @@ export class SfxModule {
     set vol(value: number) { this._vol = value.limit(0, 1); }
 
     /**
+     * 暫停前音量
+     */
+    private declare _pauseVol: number;
+
+    /**
      * 暫停中
      */
     private declare _paused: boolean;
@@ -35,11 +40,6 @@ export class SfxModule {
      * 暫停中
      */
     get paused(): boolean { return this._paused; }
-
-    /**
-     * 暫停中
-     */
-    set paused(value: boolean) { this._paused = value; }
 
     /**
      * 音效池
@@ -63,6 +63,7 @@ export class SfxModule {
         this._pool.init(this._host);
 
         this.vol = 1;
+        this._pauseVol = 1;
         this._paused = false;
     }
 
@@ -89,5 +90,29 @@ export class SfxModule {
         let audio = await this._pool.fetch(SfxAudio);
         audio.node.setParent(this._host);
         audio.playOneShot(clip, this._vol);
+    }
+
+    /**
+     * 暫停
+     */
+    pause(): void {
+        if (this.paused) {
+            return;
+        }
+
+        this._paused = true;
+        this._pauseVol = this.vol;
+    }
+
+    /**
+     * 續播
+     */
+    resume(): void {
+        if (!this._paused) {
+            return;
+        }
+
+        this._paused = false;
+        this.vol = this._pauseVol;
     }
 }

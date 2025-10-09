@@ -1,5 +1,6 @@
 import { _decorator, AudioSource, Component, director, game, Node } from 'cc';
 import { AppModules } from './app-modules';
+import { FocusBlur } from '../component/focus-blur';
 
 const { ccclass, property } = _decorator;
 
@@ -27,6 +28,29 @@ export class AppLauncher extends Component {
 
         // 模塊初始化
         this.initModules();
+    }
+
+    /**
+     * 
+     */
+    protected start(): void {
+        this._persist.addComponent(FocusBlur);
+        
+        // 聚焦
+        AppModules.event.on("VIEW_FOCUS", () => {
+            director.resume();
+            game.resume();
+            AppModules.bgm.resume();
+            AppModules.sfx.resume();
+        });
+
+        // 失焦
+        AppModules.event.on("VIEW_BLUR", () => {
+            director.pause();
+            game.pause();
+            AppModules.bgm.pause();
+            AppModules.sfx.pause();
+        });
     }
 
     /**
