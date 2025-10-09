@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, screen, sys, UITransform, view } from 'cc';
+import { _decorator, Component, Node, screen, UITransform, view } from 'cc';
 
 const { ccclass, property, requireComponent, menu } = _decorator;
 
