@@ -1,0 +1,53 @@
+import { AssetModule } from "../asset/asset-module";
+import { BgmModule } from "../audio/bgm-module";
+import { SfxModule } from "../audio/sfx-module";
+import { EventModule } from "../event/event-module";
+import { FluxModule } from "../flux/flux-module";
+import { LogModule } from "../log/log-module";
+import { NetModule } from "../network/net-module";
+import { SingleModule } from "../singleton/single-module";
+
+/**
+ * app模塊
+ */
+export class AppModules {
+    /**
+     * 資源模塊
+     */
+    static readonly asset: AssetModule = new AssetModule();
+
+    /**
+     * 背景音樂
+     */
+    static readonly bgm: BgmModule = new BgmModule();
+
+    /**
+     * 音效模擴
+     */
+    static readonly sfx: SfxModule = new SfxModule();
+
+    /**
+     * 事件模塊
+     */
+    static readonly event: EventModule = new EventModule();
+
+    /**
+     * flux模塊
+     */
+    static readonly flux: FluxModule = new FluxModule();
+
+    /**
+     * 日誌模塊
+     */
+    static readonly log: LogModule = new LogModule();
+
+    /**
+     * 網路模塊
+     */
+    static readonly net: NetModule = new NetModule();
+
+    /**
+     * 單例模塊
+     */
+    static readonly single: SingleModule = new SingleModule();
+}

@@ -1,0 +1,66 @@
+import { FsmCtrl } from "./fsm-ctrl";
+
+/**
+ * 狀態機狀態
+ */
+export abstract class FsmState<T> {
+    /**
+     * 名稱
+     */
+    get name(): string { return this.constructor.name; }
+
+    /**
+     * 狀態機控制
+     */
+    protected declare _ctrl: FsmCtrl<T>;
+
+    /**
+     * 狀態機持有人
+     */
+    protected get _owner(): T { return this._ctrl.owner; }
+
+    /**
+     * 狀態編號
+     */
+    abstract get id(): number;
+
+    /**
+     * 初始化
+     * @param ctrl 狀態機控制
+     * @param params 初始化參數
+     */
+    init(ctrl: FsmCtrl<T>, ...params: any[]): void {
+        this._ctrl = ctrl;
+    }
+
+    /**
+     * 關閉
+     */
+    shutdown(): void {}
+
+    /**
+     * 進入此狀態
+     * @param params 外部參數
+     */
+    onEnter(...params: any[]): void {};
+
+    /**
+     * 離開此狀態
+     */
+    onLeave(): void {};
+
+    /**
+     * 狀態更新
+     * @summary 當前為此狀態時才會執行
+     */
+    onDraw(dt: number): void {};
+
+    /**
+     * 變更狀態
+     * @param id 狀態編號
+     * @param params 新狀態onEnter()使用的參數
+     */
+    protected changeState(id: number, ...params: any[]): void {
+        this._ctrl.changeState(id, ...params);
+    }
+}
